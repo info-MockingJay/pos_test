@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+<!--    Partner List-->
+
+    <t t-inherit="point_of_sale.PartnerList" t-inherit-mode="extension">
+        <xpath expr="//thead/tr/th[contains(@class, 'partner-line-email')]" position="before">
+            <t t-if="!ui.isSmall">
+                <th class="partner-line-dob py-2" style="width: 15%">Date of Birth</th>
+            </t>
+        </xpath>
+    </t>
+
+<!--    Partner Line-->
+
+    <t t-inherit="point_of_sale.PartnerLine" t-inherit-mode="extension">
+        <xpath expr="//tr/td[contains(@class, 'partner-line-email')]" position="before">
+            <td class="partner-line-dob">
+                <div class="text-bg-muted" t-if="props.partner.date_of_birth" t-esc="props.partner.date_of_birth" />
+                <div t-if="!props.partner.date_of_birth" class="text-center">-</div>
+            </td>
+        </xpath>
+    </t>
+
+</templates>
