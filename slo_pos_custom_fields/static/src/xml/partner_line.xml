@@ -20,6 +20,25 @@
                 <div t-if="!props.partner.date_of_birth" class="text-center">-</div>
             </td>
         </xpath>
+
+    </t>
+
+    <t t-inherit="point_of_sale.PartnerLine" t-inherit-mode="extension">
+        <xpath expr="//tr[contains(@class, 'partner-line')]" position="attributes">
+            <attribute name="t-att-class">
+                {
+                    'partner-line': true,
+                    'partner-info': true,
+                    'selected': props.isSelected,
+                    'bg-danger': props.partner.date_of_birth
+                        &amp;&amp; (new Date(props.partner.date_of_birth)).getDate() === (new Date()).getDate()
+                        &amp;&amp; (new Date(props.partner.date_of_birth)).getMonth() === (new Date()).getMonth(),
+                    'text-white': props.partner.date_of_birth
+                        &amp;&amp; (new Date(props.partner.date_of_birth)).getDate() === (new Date()).getDate()
+                        &amp;&amp; (new Date(props.partner.date_of_birth)).getMonth() === (new Date()).getMonth()
+                }
+            </attribute>
+        </xpath>
     </t>
 
 </templates>
